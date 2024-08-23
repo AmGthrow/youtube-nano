@@ -14,16 +14,19 @@ python -m venv venv
 
 For Linux:
 ```
-source venv/bin/activate 
+source venv/bin/activate
 ```
 
 For Windows:
 ```
 venv\Scripts\activate.bat
 ```
-3. **Ensure you have a `.env` file containing environment variables.**
 
-
+Install dependencies:
+```
+pip install -r requirements/base.txt -r requirements/development.txt
+```
+3. **Ensure you have a `.env` file containing environment variables.** See `.sample.env` for the variables you'll need to set.
 
 4. Start the Django server
 ```
