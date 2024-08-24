@@ -1,0 +1,21 @@
+.video-frame {
+    width: 80%;
+    height: 80vh;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 20px;
+}
+
+p {
+    margin: 10px 0;
+    font-size: 16px;
+    color: #333;
+}
+
+p:first-of-type {
+    font-weight: bold;
+    font-size: 18px;
+}
