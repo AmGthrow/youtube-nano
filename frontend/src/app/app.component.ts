@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { VideoplayerComponent } from './videoplayer/videoplayer.component';
-import { VideoDataDetailed } from './video-data-detailed';
+import { VideoDataDetailed } from './video-data';
 
 
 @Component({
@@ -15,6 +15,7 @@ export class AppComponent {
   videoData: VideoDataDetailed = {
     title: 'My Awesome Video',
     description: 'This is a description of my awesome video.',
+    uploader: 'Jimmy Johnson',
     likes: 456
   };
 }
