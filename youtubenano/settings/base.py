@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # Third-party apps
     "rest_framework",
+    "rest_framework.authtoken",
+    "dj_rest_auth",
     # Local apps
     "users",
     "frontend",
@@ -137,3 +139,22 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 AUTH_USER_MODEL = "users.CustomUser"
+
+# DJ Rest Auth settings
+# https://dj-rest-auth.readthedocs.io/en/latest/installation.html
+# https://dj-rest-auth.readthedocs.io/en/latest/configuration.html?highlight=settings
+REST_AUTH = {
+    "USE_JWT": True,
+    # These are the JSON names to be used when actually sending the JWT in the API
+    "JWT_AUTH_COOKIE": "token",
+    "JWT_AUTH_REFERSH_COOKIE": "refresh",
+    "JWT_AUTH_HTTPONLY": False,
+}
+
+# Django Rest Framework
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    ),
+    "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAdminUser",),
+}
