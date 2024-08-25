@@ -1,7 +1,14 @@
 <main class="main">
 
   <body>
-    <app-videoplayer [videoData]="videoData">
-    </app-videoplayer>
+    <div class="player-suggestions-container">
+      <app-videoplayer [videoDataDetailed]="mainVideo">
+      </app-videoplayer>
+      <div class="video-suggestions">
+        @for (suggestedVideo of suggestedVideoList; track suggestedVideo.id ){
+        <app-videosuggestions [videoData]="suggestedVideo"></app-videosuggestions>
+        }
+      </div>
+    </div>
   </body>
 </main>

@@ -1,0 +1,57 @@
+@media (max-width: 768px) {
+    body {
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    h2 {
+        font-size: 1.75em;
+    }
+
+    /* Adjust as necessary for other text elements */
+}
+
+/* Base styles */
+.player-suggestions-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Styles for desktop screens */
+@media (min-width: 768px) {
+    .player-suggestions-container {
+        flex-direction: row;
+    }
+
+    app-videoplayer {
+        flex: 0 0 80%;
+        /* Takes up 80% of the screen width */
+    }
+
+    .video-suggestions {
+        flex: 1;
+        /* Takes up the remaining 20% of the screen width */
+    }
+}
+
+/* Styles for smaller screens */
+@media (max-width: 767px) {
+    .player-suggestions-container {
+        flex-direction: column;
+    }
+
+    app-videoplayer {
+        width: 100%;
+        /* Takes up 100% of the screen width */
+    }
+
+    .video-suggestions {
+        width: 100%;
+        /* Takes up 100% of the screen width */
+    }
+}

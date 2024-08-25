@@ -9,5 +9,5 @@ import { VideoDataDetailed } from '../video-data';
   styleUrl: './videoplayer.component.scss'
 })
 export class VideoplayerComponent {
-  @Input() videoData!: VideoDataDetailed;
+  @Input() videoDataDetailed!: VideoDataDetailed;
 }

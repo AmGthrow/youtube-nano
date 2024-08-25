@@ -1,0 +1,39 @@
+.suggested-video {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    /* Space between suggested videos */
+}
+
+.thumbnail {
+    margin-right: 10px;
+    /* Space between the image and the text */
+    border-radius: 4px;
+    /* Optional: to add some rounding to the image corners */
+}
+
+.suggested-video p {
+    margin: 0;
+}
+
+.suggested-video p:first-of-type {
+    font-weight: bold;
+    /* Makes the title stand out */
+    font-size: 1.1em;
+    /* Slightly larger font size for the title */
+}
+
+.suggested-video p:last-of-type {
+    font-size: 0.9em;
+    /* Sligrgb(125, 125, 125) smaller font size for the uploader */
+    color: #c0c0c0;
+    /* Muted color for the uploader text */
+}
+
+.suggested-video-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    /* Ensures content starts from the top */
+    height: 100%;
+}
