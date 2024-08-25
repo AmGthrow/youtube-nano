@@ -1,5 +1,7 @@
 <div>
-    <div class="video-frame">video player is supposed to go here</div>
+    <video controls width="100%" height="auto">
+        <source [src]="videoDataDetailed.videoUrl" type="video/mp4">
+    </video>
     <h1>{{ videoDataDetailed.title }}</h1>
     <p>{{ videoDataDetailed.description }}</p>
     <p>Uploader: {{ videoDataDetailed.uploader }}</p>

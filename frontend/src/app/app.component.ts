@@ -16,6 +16,7 @@ export class AppComponent {
   mainVideo: VideoDataDetailed = {
     id: 1,
     title: 'My Awesome Video',
+    videoUrl: 'https://file-examples.com/storage/fe45dfa76e66c6232a111c9/2017/04/file_example_MP4_1920_18MG.mp4',
     description: 'This is a description of my awesome video.',
     uploader: 'Jimmy Johnson',
     likes: 456
