@@ -8,7 +8,7 @@ class VideoDetailSerializer(serializers.ModelSerializer):
         model = Video
         fields = [
             "id",
-            "videoFile",
+            "video_file",
             "title",
             "description",
             "uploader",
