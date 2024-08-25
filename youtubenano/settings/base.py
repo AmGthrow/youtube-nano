@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     # Local apps
     "users",
     "frontend",
+    "videos",
 ]
 
 MIDDLEWARE = [
