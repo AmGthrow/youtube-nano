@@ -5,6 +5,7 @@ export interface VideoDataDetailed {
     description: string;
     uploader: string;
     likes: number;
+    uploaded_at: string;
 }
 
 export interface VideoData {
