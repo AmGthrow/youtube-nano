@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { UserCreate, LoginResponse, UserDetails } from '../types/auth';
+import { UserCreate, LoginResponse, UserDetails, UserLogin } from '../types/auth';
 import { getHeaders } from './helpers';
 
 @Injectable({
@@ -36,6 +36,13 @@ export class AuthService {
     postRegistration(newUserInfo: UserCreate): Observable<LoginResponse> {
         return this.http.post<LoginResponse>(`${this.apiUrl}registration/`,
             newUserInfo,
+            { headers: getHeaders() },
+        );
+    }
+
+    postLogin(loginDetails: UserLogin): Observable<LoginResponse> {
+        return this.http.post<LoginResponse>(`${this.apiUrl}login/`,
+            loginDetails,
             { headers: getHeaders() },
         );
     }

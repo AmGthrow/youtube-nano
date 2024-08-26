@@ -14,7 +14,7 @@ export class AppComponent {
   constructor(public authService: AuthService) { }
 
   logOut() {
-    this.authService.postLogout().subscribe();
+    this.authService.postLogout().subscribe(response => alert(response));
     this.authService.logout();
   }
 };

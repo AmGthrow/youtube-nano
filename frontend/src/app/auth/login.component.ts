@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
+import { UserLogin } from '../types/auth';
 
 @Component({
     selector: 'app-login',
@@ -9,12 +12,16 @@ import { FormsModule } from '@angular/forms';
     styleUrls: ['./authstyles.scss']
 })
 export class LoginComponent {
-    username = '';
-    password = '';
+    loginDetails: UserLogin = {
+        username: '',
+        password: '',
+    };
 
+    constructor(private authService: AuthService, private router: Router) { }
     onSubmit() {
-        // Placeholder for login logic
-        console.log('Username:', this.username);
-        console.log('Password:', this.password);
+        this.authService.postLogin(this.loginDetails).subscribe(response => {
+            this.authService.setAuth(response);
+            this.router.navigate(['/']);
+        })
     }
 }
