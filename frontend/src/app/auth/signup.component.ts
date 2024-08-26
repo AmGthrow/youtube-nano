@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { AuthService } from '../services/auth.service';
+import { UserCreate } from '../types/auth';
 
 @Component({
     selector: 'app-signup',
@@ -9,12 +11,16 @@ import { FormsModule } from '@angular/forms';
     styleUrls: ['./authstyles.scss']
 })
 export class SignupComponent {
-    username = '';
-    password = '';
+    userDetails: UserCreate = {
+        username: '',
+        password1: '',
+        password2: '',
+    }
 
+    constructor(private authService: AuthService) { }
     onSubmit() {
-        // Placeholder for signup logic
-        console.log('Username:', this.username);
-        console.log('Password:', this.password);
+        this.authService.postRegistration(this.userDetails).subscribe(response =>
+            console.log(response)
+        )
     }
 }
