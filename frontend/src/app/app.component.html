@@ -1,15 +1,11 @@
 <main class="main">
 
   <body>
-    <div class="player-suggestions-container">
-      <app-videoplayer [videoDataDetailed]="mainVideo">
-      </app-videoplayer>
-      <div class="video-suggestions">
-        @for (suggestedVideo of suggestedVideoList; track suggestedVideo.id ){
-        <app-videosuggestions [videoData]="suggestedVideo"
-          (clickedVideoId)="changeCurrentVideo($event)"></app-videosuggestions>
-        }
-      </div>
-    </div>
+    <nav>
+      <a routerLink="/">Home</a>
+      <a routerLink="/login">Login</a>
+      <a routerLink="/signup">Signup</a>
+    </nav>
+    <router-outlet />
   </body>
 </main>
