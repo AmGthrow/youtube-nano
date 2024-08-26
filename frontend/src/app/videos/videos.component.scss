@@ -12,13 +12,11 @@
     }
 
     app-videoplayer {
-        flex: 0 0 80%;
-        /* Takes up 80% of the screen width */
+        flex: 0 0 60%;
     }
 
     .video-suggestions {
         flex: 1;
-        /* Takes up the remaining 20% of the screen width */
     }
 }
 

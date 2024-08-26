@@ -20,7 +20,10 @@ export class VideoplayerComponent {
   deleteVideo() {
     if (this.videoDataDetailed) {
       this.videoApiService.deleteVideo(this.videoDataDetailed.id).subscribe(
-        (response) => alert("Video deleted successfully"),
+        (response) => {
+          alert("Video deleted successfully");
+          this.videoApiService.notifyVideosUpdate();
+        },
         (error) => alert(JSON.stringify(error))
       );
     }
@@ -36,7 +39,8 @@ export class VideoplayerComponent {
     if (this.videoDataDetailed) {
       this.videoApiService.patchVideo(this.videoDataDetailed.id, this.videoDataDetailed).subscribe(
         (response) => {
-          alert("Changes have been saved successfully")
+          alert("Changes have been saved successfully");
+          this.videoApiService.notifyVideosUpdate();
           this.editing = false;
         },
         (error) => {

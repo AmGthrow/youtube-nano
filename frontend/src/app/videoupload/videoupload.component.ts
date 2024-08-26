@@ -48,6 +48,7 @@ export class VideouploadComponent {
       this.videoApiService.postVideo(formData).subscribe(
         data => {
           alert(`Video uploaded successfully`);
+          this.videoApiService.notifyVideosUpdate();
           this.router.navigate(['/']);
         },
         error => {

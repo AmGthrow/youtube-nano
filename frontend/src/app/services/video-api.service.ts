@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { VideoData, VideoDataDetailed, VideoDataUpload } from '../types/video-data';
 import { getHeaders } from './helpers';
 
@@ -10,6 +10,7 @@ import { getHeaders } from './helpers';
 export class VideoApiService {
 
   private apiUrl = 'http://127.0.0.1:8000/api/v1/videos/';
+  private videosUpdated = new Subject<void>();
   constructor(private http: HttpClient) { }
 
   postVideo(videoData: FormData): Observable<VideoDataDetailed> {
@@ -48,4 +49,11 @@ export class VideoApiService {
   getVideos(): Observable<VideoData[]> {
     return this.http.get<VideoData[]>(this.apiUrl);
   };
+
+  notifyVideosUpdate() {
+    this.videosUpdated.next();
+  }
+  getVideosUpdatedListener() {
+    return this.videosUpdated.asObservable();
+  }
 };
