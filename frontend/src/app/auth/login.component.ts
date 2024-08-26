@@ -6,13 +6,11 @@ import { FormsModule } from '@angular/forms';
     standalone: true,
     imports: [FormsModule],
     templateUrl: './login.component.html',
-    styleUrls: ['./login.component.scss']
+    styleUrls: ['./authstyles.scss']
 })
 export class LoginComponent {
-    username: string = '';
-    password: string = '';
-
-    constructor() { }
+    username = '';
+    password = '';
 
     onSubmit() {
         // Placeholder for login logic

@@ -6,13 +6,11 @@ import { FormsModule } from '@angular/forms';
     standalone: true,
     imports: [FormsModule],
     templateUrl: './signup.component.html',
-    styleUrls: ['./signup.component.scss']
+    styleUrls: ['./authstyles.scss']
 })
 export class SignupComponent {
-    username: string = '';
-    password: string = '';
-
-    constructor() { }
+    username = '';
+    password = '';
 
     onSubmit() {
         // Placeholder for signup logic
