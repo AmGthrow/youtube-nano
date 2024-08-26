@@ -20,4 +20,8 @@ export class AppComponent {
     this.suggestedVideoList = videoApiService.getVideos();
     this.mainVideo = videoApiService.getVideo(this.suggestedVideoList[0].id);
   }
+
+  changeCurrentVideo(id: string) {
+    this.mainVideo = this.videoApiService.getVideo(id)
+  }
 }

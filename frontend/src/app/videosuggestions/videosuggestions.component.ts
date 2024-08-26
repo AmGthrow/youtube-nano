@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 import { VideoData } from '../types/video-data';
 
@@ -11,4 +11,8 @@ import { VideoData } from '../types/video-data';
 })
 export class VideosuggestionsComponent {
   @Input() videoData!: VideoData;
+  @Output() clickedVideoId = new EventEmitter<string>();
+  alertEvent() {
+    this.clickedVideoId.emit(this.videoData.id);
+  }
 }
