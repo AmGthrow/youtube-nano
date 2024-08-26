@@ -3,12 +3,28 @@
         [src]="videoDataDetailed?.video_file" type="video/mp4">
     </video>
     <div style="display: flex; justify-content: space-between;">
-        <div>
+        <div style="display: flex; flex-direction: column;" class="form-group">
+            @if(this.editing && videoDataDetailed){
+            <input class="form-input" type="text" [(ngModel)]="this.videoDataDetailed.title"
+                placeholder="Enter title" />
+            <textarea class="form-input" [(ngModel)]="this.videoDataDetailed.description"
+                placeholder="Enter description"></textarea>
+            <input class="form-input" type="number" [(ngModel)]="this.videoDataDetailed.likes"
+                placeholder="Enter likes" />
+            <button class="form-button" (click)="saveChanges()">Save</button>
+            <button class="form-button" (click)="cancelEditing()">Cancel</button>
+            } @else {
             <h1>{{ videoDataDetailed?.title || 'No Video Selected' }}</h1>
             <p>{{ videoDataDetailed?.description || 'No description available.' }}</p>
+            <p>Likes: {{ videoDataDetailed?.likes || 'N/A' }}</p>
+            }
+            @if(!editing && videoDataDetailed?.uploader === authService.user?.username){
+            <button class="form-button" (click)="startEditing()">Edit Video</button>
+            <button class="form-button" style="background-color: rgb(175, 24, 24);" (click)="deleteVideo()">Delete
+                Video</button>
+            }
         </div>
         <div style="text-align: right;">
             <p>Uploader: {{ videoDataDetailed?.uploader || 'Unknown' }}</p>
-            <p>Likes: {{ videoDataDetailed?.likes || 'N/A' }}</p>
         </div>
     </div>
