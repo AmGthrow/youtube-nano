@@ -24,11 +24,25 @@ export class AuthService {
         this.user = response.user;
         localStorage.setItem('refresh', response.refresh);
     }
+    logout() {
+        this.isAuthenticated = false;
+        this.access = '';
+        this.refresh = '';
+        this.user = undefined;
+        localStorage.removeItem('refresh');
+    }
+
 
     postRegistration(newUserInfo: UserCreate): Observable<LoginResponse> {
         return this.http.post<LoginResponse>(`${this.apiUrl}registration/`,
             newUserInfo,
             { headers: getHeaders() },
         );
+    }
+
+    postLogout(): Observable<{ "detail": string }> {
+        return this.http.post<{ "detail": string }>(`${this.apiUrl}logout/`,
+            { headers: getHeaders() },
+        )
     }
 };

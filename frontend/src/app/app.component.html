@@ -3,8 +3,12 @@
   <body>
     <nav>
       <a routerLink="/">Home</a>
+      @if(this.authService.isAuthenticated){
+      <a (click)="logOut()">Logout of {{this.authService.user?.username}}</a>
+      }@else {
       <a routerLink="/login">Login</a>
       <a routerLink="/signup">Signup</a>
+      }
     </nav>
     <router-outlet />
   </body>
