@@ -20,7 +20,7 @@
             }
             @if(!editing && videoDataDetailed?.uploader === authService.user?.username){
             <button class="form-button" (click)="startEditing()">Edit Video</button>
-            <button class="form-button" style="background-color: rgb(175, 24, 24);" (click)="deleteVideo()">Delete
+            <button class="form-button-delete" (click)="deleteVideo()">Delete
                 Video</button>
             }
         </div>
