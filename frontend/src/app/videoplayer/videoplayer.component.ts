@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { VideoDataDetailed } from '../video-data';
+import { VideoDataDetailed } from '../types/video-data';
 
 @Component({
   selector: 'app-videoplayer',

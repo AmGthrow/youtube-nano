@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
-import { VideoData } from '../video-data';
+import { VideoData } from '../types/video-data';
 
 @Component({
   selector: 'app-videosuggestions',

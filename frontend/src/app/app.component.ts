@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { VideoplayerComponent } from './videoplayer/videoplayer.component';
-import { VideoDataDetailed, VideoData } from './video-data';
+import { VideoDataDetailed, VideoData } from './types/video-data';
 import { VideosuggestionsComponent } from './videosuggestions/videosuggestions.component';
 
 
