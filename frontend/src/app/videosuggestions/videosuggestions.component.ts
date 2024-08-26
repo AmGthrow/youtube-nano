@@ -10,6 +10,5 @@ import { VideoData } from '../types/video-data';
   styleUrl: './videosuggestions.component.scss',
 })
 export class VideosuggestionsComponent {
-  thumbnail = 'https://static-cse.canva.com/blob/1667997/1600w-wlXEWqHuexQ.jpg';
   @Input() videoData!: VideoData;
 }
