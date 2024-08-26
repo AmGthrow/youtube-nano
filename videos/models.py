@@ -50,7 +50,10 @@ class Video(models.Model):
         return self.title
 
     def save(self, *args, **kwargs):
+        # Video must be saved first so video and thumbnail have same filename
+        super().save(*args, **kwargs)
+
+        # If thumbnail_file is not already set, generate the thumbnail
         if self.video_file and not self.thumbnail_file:
             self.thumbnail_file = generate_thumbnail(self.video_file)
-
-        super().save(*args, **kwargs)
+            super().save(update_fields=["thumbnail_file"])
