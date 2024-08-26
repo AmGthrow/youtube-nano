@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { VideoData, VideoDataDetailed } from '../types/video-data';
 import { UserCreate, UserCreateResponse } from '../types/auth';
+import { getHeaders } from './helpers';
 
 @Injectable({
     providedIn: 'root'
@@ -12,6 +12,9 @@ export class AuthService {
     constructor(private http: HttpClient) { }
 
     postRegistration(newUserInfo: UserCreate): Observable<UserCreateResponse> {
-        return this.http.post<UserCreateResponse>(`${this.apiUrl}registration/`, newUserInfo);
+        return this.http.post<UserCreateResponse>(`${this.apiUrl}registration/`,
+            newUserInfo,
+            { headers: getHeaders() },
+        );
     }
 };
