@@ -8,6 +8,14 @@ export interface VideoDataDetailed {
     uploaded_at: string;
 }
 
+export interface VideoDataUpload {
+    video_file: File | null;
+    title: string;
+    description: string;
+    uploader: string;
+    likes: number;
+}
+
 export interface VideoData {
     id: string;
     thumbnail_file: string;

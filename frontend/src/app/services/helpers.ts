@@ -16,7 +16,7 @@ function getCsrfToken(): string | null {
 export function getHeaders(): HttpHeaders {
     const csrfToken = getCsrfToken();
     return new HttpHeaders({
-        'Content-Type': 'application/json',
+        // 'Content-Type': 'application/json',
         'X-CSRFToken': csrfToken || ''
     });
 }

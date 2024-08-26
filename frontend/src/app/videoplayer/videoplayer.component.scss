@@ -23,13 +23,14 @@
     background-color: #2c2c2c;
     color: #e0e0e0;
     font-size: 14px;
+
+    &:focus {
+        outline: none;
+        border-color: #007bff;
+        box-shadow: 0 0 0 3px rgba(38, 143, 255, 0.25);
+    }
 }
 
-.form-input:focus {
-    outline: none;
-    border-color: #007bff;
-    box-shadow: 0 0 0 3px rgba(38, 143, 255, 0.25);
-}
 
 .form-button {
     padding: 10px;
@@ -40,12 +41,21 @@
     color: #fff;
     font-size: 16px;
     cursor: pointer;
+
+    &:hover {
+        background-color: #0056b3;
+    }
+
+    &:active {
+        background-color: #004494;
+    }
 }
 
-.form-button:hover {
-    background-color: #0056b3;
-}
+.form-button-delete {
+    @extend .form-button;
+    background-color: #ff4500;
 
-.form-button:active {
-    background-color: #004494;
+    &:hover {
+        background-color: #af1818;
+    }
 }

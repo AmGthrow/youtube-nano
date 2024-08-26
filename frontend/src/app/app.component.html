@@ -4,6 +4,7 @@
     <nav>
       <a routerLink="/">Home</a>
       @if(this.authService.isAuthenticated){
+      <a routerLink="/upload">Upload Video</a>
       <a (click)="logOut()">Logout of {{this.authService.user?.username}}</a>
       }@else {
       <a routerLink="/login">Login</a>
