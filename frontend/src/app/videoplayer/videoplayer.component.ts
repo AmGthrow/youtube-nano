@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { VideoDataDetailed } from '../video-data';
+import { VideoDataDetailed } from '../types/video-data';
 
 @Component({
   selector: 'app-videoplayer',
@@ -9,5 +9,5 @@ import { VideoDataDetailed } from '../video-data';
   styleUrl: './videoplayer.component.scss'
 })
 export class VideoplayerComponent {
-  @Input() videoDataDetailed!: VideoDataDetailed;
+  @Input() videoDataDetailed!: VideoDataDetailed | undefined;
 }

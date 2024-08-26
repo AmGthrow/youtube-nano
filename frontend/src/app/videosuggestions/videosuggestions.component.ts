@@ -1,6 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
-import { VideoData } from '../video-data';
+import { VideoData } from '../types/video-data';
 
 @Component({
   selector: 'app-videosuggestions',
@@ -10,6 +10,9 @@ import { VideoData } from '../video-data';
   styleUrl: './videosuggestions.component.scss',
 })
 export class VideosuggestionsComponent {
-  thumbnail = 'https://static-cse.canva.com/blob/1667997/1600w-wlXEWqHuexQ.jpg';
   @Input() videoData!: VideoData;
+  @Output() clickedVideoId = new EventEmitter<string>();
+  alertEvent() {
+    this.clickedVideoId.emit(this.videoData.id);
+  }
 }

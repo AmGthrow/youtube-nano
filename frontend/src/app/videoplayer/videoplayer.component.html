@@ -1,14 +1,14 @@
 <div>
-    <video controls width="100%" height="auto">
-        <source [src]="videoDataDetailed.video_file" type="video/mp4">
+    <video controls width="100%" height="auto" playsinline="true" webkit-playsinline="true"
+        [src]="videoDataDetailed?.video_file" type="video/mp4">
     </video>
     <div style="display: flex; justify-content: space-between;">
         <div>
-            <h1>{{ videoDataDetailed.title }}</h1>
-            <p>{{ videoDataDetailed.description }}</p>
+            <h1>{{ videoDataDetailed?.title || 'No Video Selected' }}</h1>
+            <p>{{ videoDataDetailed?.description || 'No description available.' }}</p>
         </div>
         <div style="text-align: right;">
-            <p>Uploader: {{ videoDataDetailed.uploader }}</p>
-            <p>Likes: {{ videoDataDetailed.likes }}</p>
+            <p>Uploader: {{ videoDataDetailed?.uploader || 'Unknown' }}</p>
+            <p>Likes: {{ videoDataDetailed?.likes || 'N/A' }}</p>
         </div>
     </div>
