@@ -9,7 +9,7 @@ export interface VideoDataDetailed {
 }
 
 export interface VideoDataUpload {
-    video_file: string;
+    video_file: File | null;
     title: string;
     description: string;
     uploader: string;

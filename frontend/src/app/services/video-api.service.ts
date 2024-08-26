@@ -12,7 +12,7 @@ export class VideoApiService {
   private apiUrl = 'http://127.0.0.1:8000/api/v1/videos/';
   constructor(private http: HttpClient) { }
 
-  postVideo(videoData: VideoDataUpload): Observable<VideoDataDetailed> {
+  postVideo(videoData: FormData): Observable<VideoDataDetailed> {
     return this.http.post<VideoDataDetailed>(
       this.apiUrl,
       videoData,
