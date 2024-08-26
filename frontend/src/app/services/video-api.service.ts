@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { VideoData, VideoDataDetailed } from './types/video-data';
+import { VideoData, VideoDataDetailed } from '../types/video-data';
 
 @Injectable({
   providedIn: 'root'

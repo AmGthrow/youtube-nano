@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { VideoplayerComponent } from './videoplayer/videoplayer.component';
 import { VideosuggestionsComponent } from './videosuggestions/videosuggestions.component';
-import { VideoApiService } from './video-api.service';
+import { VideoApiService } from './services/video-api.service';
 
 
 @Component({
