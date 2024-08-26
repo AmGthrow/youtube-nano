@@ -49,6 +49,15 @@ class Video(models.Model):
     def __str__(self):
         return self.title
 
+    def delete(self, *args, **kwargs):
+        # Delete the video and thumbnail files from the file system
+        if self.video_file:
+            self.video_file.delete(save=False)
+        if self.thumbnail_file:
+            self.thumbnail_file.delete(save=False)
+
+        super().delete(*args, **kwargs)
+
     def save(self, *args, **kwargs):
         # Video must be saved first so video and thumbnail have same filename
         super().save(*args, **kwargs)
