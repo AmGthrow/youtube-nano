@@ -9,6 +9,7 @@ export interface VideoDataDetailed {
 
 export interface VideoData {
     id: string;
+    thumbnail_file: string;
     title: string;
     uploader: string;
 }
