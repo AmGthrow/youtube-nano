@@ -49,6 +49,7 @@ export class AuthService {
 
     postLogout(): Observable<{ "detail": string }> {
         return this.http.post<{ "detail": string }>(`${this.apiUrl}logout/`,
+            null,
             { headers: getHeaders() },
         )
     }

@@ -20,9 +20,16 @@ export class SignupComponent {
 
     constructor(private authService: AuthService, private router: Router) { }
     onSubmit() {
-        this.authService.postRegistration(this.userDetails).subscribe(response => {
-            this.authService.setAuth(response);
-            this.router.navigate(['/']);
-        })
+        this.authService.postRegistration(this.userDetails).subscribe(
+            data => {
+                alert(`Logged in as ${data.user.username}`);
+                this.authService.setAuth(data);
+                this.router.navigate(['/']);
+            },
+            error => {
+                alert(JSON.stringify(error.error));
+                console.error(error);
+            }
+        )
     }
 }

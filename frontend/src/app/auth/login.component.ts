@@ -19,9 +19,16 @@ export class LoginComponent {
 
     constructor(private authService: AuthService, private router: Router) { }
     onSubmit() {
-        this.authService.postLogin(this.loginDetails).subscribe(response => {
-            this.authService.setAuth(response);
-            this.router.navigate(['/']);
-        })
+        this.authService.postLogin(this.loginDetails).subscribe(
+            data => {
+                alert(`Logged in as ${data.user.username}`);
+                this.authService.setAuth(data);
+                this.router.navigate(['/']);
+            },
+            error => {
+                alert(JSON.stringify(error.error));
+                console.error(error);
+            }
+        )
     }
 }
