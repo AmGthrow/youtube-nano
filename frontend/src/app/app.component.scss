@@ -1,57 +1,42 @@
-@media (max-width: 768px) {
-    body {
-        font-size: 14px;
-        line-height: 1.5;
-    }
-
-    h1 {
-        font-size: 2em;
-    }
-
-    h2 {
-        font-size: 1.75em;
-    }
-
-    /* Adjust as necessary for other text elements */
-}
-
-/* Base styles */
-.player-suggestions-container {
+/* Main container styling */
+.main {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    min-height: 100vh;
 }
 
-/* Styles for desktop screens */
-@media (min-width: 768px) {
-    .player-suggestions-container {
-        flex-direction: row;
-    }
-
-    app-videoplayer {
-        flex: 0 0 80%;
-        /* Takes up 80% of the screen width */
-    }
-
-    .video-suggestions {
-        flex: 1;
-        /* Takes up the remaining 20% of the screen width */
-    }
+/* Navigation bar styling */
+nav {
+    background-color: #1f1f1f;
+    /* Slightly lighter dark color for the nav */
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid #333;
 }
 
-/* Styles for smaller screens */
-@media (max-width: 767px) {
-    .player-suggestions-container {
-        flex-direction: column;
-    }
+nav a {
+    color: #e0e0e0;
+    /* Light text color for links */
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 16px;
+}
 
-    app-videoplayer {
-        width: 100%;
-        /* Takes up 100% of the screen width */
-    }
+nav a:hover {
+    text-decoration: underline;
+    /* Underline on hover for better UX */
+}
 
-    .video-suggestions {
-        width: 100%;
-        /* Takes up 100% of the screen width */
-    }
+/* Styling for router-outlet */
+router-outlet {
+    flex: 1;
+    padding: 20px;
+}
+
+/* Additional styling for dark mode */
+a.router-link-active {
+    font-weight: bold;
+    color: #ffffff;
+    /* Highlight active link */
 }

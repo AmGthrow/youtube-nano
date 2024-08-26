@@ -1,18 +1,22 @@
-.video-frame {
-    width: 100%;
-    height: 540px;
-    background-color: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    font-size: 20px;
+/* Styling for the login form */
+.auth-form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #1e1e1e;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .form-group {
     margin-bottom: 15px;
-    width: 100%;
-    row-gap: 10px;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 5px;
+    color: #e0e0e0;
+    font-size: 14px;
 }
 
 .form-input {
@@ -32,8 +36,8 @@
 }
 
 .form-button {
+    width: 100%;
     padding: 10px;
-    margin: 0px 10px;
     background-color: #007bff;
     border: none;
     border-radius: 4px;

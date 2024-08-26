@@ -1,6 +1,6 @@
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import include, path
+from django.urls import include, path, re_path
 from rest_framework.routers import DefaultRouter
 
 from frontend import views as frontend_views
@@ -17,6 +17,7 @@ urlpatterns = [
     path("api/v1/auth/registration/", include("dj_rest_auth.registration.urls")),
     path("api/v1/api-auth/", include("rest_framework.urls")),
     path("api/v1/", include(router.urls)),
+    re_path(r"^(?P<path>.*)/$", frontend_views.index),
     path("", frontend_views.index),
 ]
 
