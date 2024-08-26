@@ -4,6 +4,8 @@ from videos.models import Video
 
 
 class VideoDetailSerializer(serializers.ModelSerializer):
+    uploader = serializers.SerializerMethodField()
+
     class Meta:
         model = Video
         fields = [
@@ -16,8 +18,13 @@ class VideoDetailSerializer(serializers.ModelSerializer):
             "uploaded_at",
         ]
 
+    def get_uploader(self, obj):
+        return obj.uploader.username
+
 
 class VideoSerializer(serializers.ModelSerializer):
+    uploader = serializers.SerializerMethodField()
+
     class Meta:
         model = Video
         fields = [
@@ -26,3 +33,6 @@ class VideoSerializer(serializers.ModelSerializer):
             "title",
             "uploader",
         ]
+
+    def get_uploader(self, obj):
+        return obj.uploader.username
