@@ -1,13 +1,14 @@
-export interface UserCreateResponse {
+export interface LoginResponse {
     access: string;
     refresh: string;
-    user: {
-        pk: number;
-        username: string;
-        email: string;
-        first_name: string;
-        last_name: string;
-    }
+    user: UserDetails;
+}
+export interface UserDetails {
+    pk: number;
+    username: string;
+    email: string;
+    first_name: string;
+    last_name: string;
 }
 export interface UserCreate {
     username: string;

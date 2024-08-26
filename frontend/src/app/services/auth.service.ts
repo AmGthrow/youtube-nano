@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { UserCreate, UserCreateResponse } from '../types/auth';
+import { UserCreate, LoginResponse, UserDetails } from '../types/auth';
 import { getHeaders } from './helpers';
 
 @Injectable({
@@ -9,10 +9,24 @@ import { getHeaders } from './helpers';
 })
 export class AuthService {
     private apiUrl = 'http://127.0.0.1:8000/api/v1/auth/'; // TODO: Make the BASE_API_URL an environment variable
+
+    public isAuthenticated = false;
+    public access = '';
+    public refresh = localStorage.getItem('refresh') || '';
+    public user: UserDetails | undefined = undefined;
+
     constructor(private http: HttpClient) { }
 
-    postRegistration(newUserInfo: UserCreate): Observable<UserCreateResponse> {
-        return this.http.post<UserCreateResponse>(`${this.apiUrl}registration/`,
+    setAuth(response: LoginResponse) {
+        this.isAuthenticated = true;
+        this.access = response.access;
+        this.refresh = response.refresh;
+        this.user = response.user;
+        localStorage.setItem('refresh', response.refresh);
+    }
+
+    postRegistration(newUserInfo: UserCreate): Observable<LoginResponse> {
+        return this.http.post<LoginResponse>(`${this.apiUrl}registration/`,
             newUserInfo,
             { headers: getHeaders() },
         );

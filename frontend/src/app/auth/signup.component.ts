@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { UserCreate } from '../types/auth';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-signup',
@@ -17,10 +18,11 @@ export class SignupComponent {
         password2: '',
     }
 
-    constructor(private authService: AuthService) { }
+    constructor(private authService: AuthService, private router: Router) { }
     onSubmit() {
-        this.authService.postRegistration(this.userDetails).subscribe(response =>
-            console.log(response)
-        )
+        this.authService.postRegistration(this.userDetails).subscribe(response => {
+            this.authService.setAuth(response);
+            this.router.navigate(['/']);
+        })
     }
 }
