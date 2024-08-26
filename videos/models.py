@@ -5,6 +5,8 @@ from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 from django.db import models
 
+from videos.utils import generate_thumbnail
+
 User = get_user_model()
 
 
@@ -31,6 +33,10 @@ class Video(models.Model):
         upload_to="videos/",
         validators=[validate_file_size, validate_video_file_type],
     )
+    thumbnail_file = models.ImageField(
+        upload_to="thumbnails/",
+        blank=True,
+    )
     title = models.CharField(max_length=100)
     description = models.CharField(max_length=300)
     uploader = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -42,3 +48,9 @@ class Video(models.Model):
 
     def __str__(self):
         return self.title
+
+    def save(self, *args, **kwargs):
+        if self.video_file and not self.thumbnail_file:
+            self.thumbnail_file = generate_thumbnail(self.video_file)
+
+        super().save(*args, **kwargs)
