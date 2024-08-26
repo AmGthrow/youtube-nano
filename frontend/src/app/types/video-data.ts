@@ -1,5 +1,5 @@
 export interface VideoDataDetailed {
-    id: number;
+    id: string;
     video_file: string;
     title: string;
     description: string;
@@ -8,7 +8,7 @@ export interface VideoDataDetailed {
 }
 
 export interface VideoData {
-    id: number;
+    id: string;
     title: string;
     uploader: string;
 }
