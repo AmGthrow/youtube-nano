@@ -57,6 +57,7 @@ export class VideouploadComponent {
           this.router.navigate(['/']);
         },
         error => {
+          this.loading = false;
           alert(JSON.stringify(error.error));
           console.error(error);
         }
