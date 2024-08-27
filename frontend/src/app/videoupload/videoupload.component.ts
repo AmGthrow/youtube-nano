@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 })
 export class VideouploadComponent {
   videoData: VideoDataUpload;
+  loading = false;
 
   constructor(
     private authService: AuthService,
@@ -39,6 +40,7 @@ export class VideouploadComponent {
 
   onSubmit(): void {
     if (this.videoData.video_file) {
+      this.loading = true;
       const formData = new FormData();
       formData.append('video_file', this.videoData.video_file);
       formData.append('title', this.videoData.title);
@@ -49,6 +51,7 @@ export class VideouploadComponent {
 
       this.videoApiService.postVideo(formData).subscribe(
         data => {
+          this.loading = false;
           alert(`Video uploaded successfully`);
           this.videoApiService.notifyVideosUpdate();
           this.router.navigate(['/']);
