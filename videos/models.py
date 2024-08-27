@@ -65,7 +65,7 @@ class Video(models.Model):
             if self.video_file and not self.thumbnail_file:
                 self.thumbnail_file = generate_thumbnail(
                     self.video_file,
-                    apply_ascii_filter=True,
+                    apply_ascii_filter=False,
                 )
             result = super().save(*args, **kwargs)
         else:
@@ -73,7 +73,7 @@ class Video(models.Model):
             if self.video_file and not self.thumbnail_file:
                 self.thumbnail_file = generate_thumbnail(
                     self.video_file,
-                    apply_ascii_filter=False,
+                    apply_ascii_filter=True,
                 )
             # only apply ascii filter when CREATING video, not update/partial update
             if self._state.adding and self.video_file:
