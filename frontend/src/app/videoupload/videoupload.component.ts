@@ -21,10 +21,11 @@ export class VideouploadComponent {
     private router: Router
   ) {
     this.videoData = {
+      video_file: null,
       title: '',
+      apply_ascii_filter: false,
       description: '',
       likes: 0,
-      video_file: null,
       uploader: this.authService.user?.username || '',
     }
   }
@@ -41,6 +42,7 @@ export class VideouploadComponent {
       const formData = new FormData();
       formData.append('video_file', this.videoData.video_file);
       formData.append('title', this.videoData.title);
+      formData.append('apply_ascii_filter', this.videoData.apply_ascii_filter.toString());
       formData.append('description', this.videoData.description);
       formData.append('likes', this.videoData.likes.toString());
       formData.append('uploader', this.videoData.uploader);
