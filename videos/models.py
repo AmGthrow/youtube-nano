@@ -67,6 +67,7 @@ class Video(models.Model):
                     self.video_file,
                     apply_ascii_filter=True,
                 )
+            result = super().save(*args, **kwargs)
         else:
             # Get ascii-fied thumbnail
             if self.video_file and not self.thumbnail_file:
@@ -79,7 +80,7 @@ class Video(models.Model):
                 self.video_file, files_to_cleanup = generate_ascii_video(
                     self.video_file,
                 )
-                super().save(*args, **kwargs)
+                result = super().save(*args, **kwargs)
                 # WARNING: Temp files must be deleted AFTER super().save().
                 # Otherwise Django will be saving nonexistent files.
                 files_to_cleanup["temp_video_file"].close()
@@ -87,3 +88,4 @@ class Video(models.Model):
                 files_to_cleanup["output_video_file"].close()
                 os.remove(files_to_cleanup["output_video_file"].name)
                 files_to_cleanup["frame_dir"].cleanup()
+        return result
