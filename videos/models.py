@@ -37,6 +37,7 @@ class Video(models.Model):
         upload_to="thumbnails/",
         blank=True,
     )
+    apply_ascii_filter = models.BooleanField(default=False)
     title = models.CharField(max_length=100)
     description = models.CharField(max_length=300)
     uploader = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -59,21 +60,30 @@ class Video(models.Model):
         super().delete(*args, **kwargs)
 
     def save(self, *args, **kwargs):
-        # If thumbnail_file is not already set, generate the thumbnail
-        if self.video_file and not self.thumbnail_file:
-            self.thumbnail_file = generate_thumbnail(self.video_file)
-
-        # When creating new video, automatically cover it with an ASCII filter
-        if self._state.adding and self.video_file:
-
-            self.video_file, files_to_cleanup = generate_ascii_video(
-                self.video_file,
-            )
-            super().save(*args, **kwargs)
-            # WARNING: Temp files must be deleted AFTER Django saves the model.
-            # Otherwise Django will be saving nonexistent files.
-            files_to_cleanup["temp_video_file"].close()
-            os.remove(files_to_cleanup["temp_video_file"].name)
-            files_to_cleanup["output_video_file"].close()
-            os.remove(files_to_cleanup["output_video_file"].name)
-            files_to_cleanup["frame_dir"].cleanup()
+        if self.apply_ascii_filter:
+            # Get regular thumbnail
+            if self.video_file and not self.thumbnail_file:
+                self.thumbnail_file = generate_thumbnail(
+                    self.video_file,
+                    apply_ascii_filter=True,
+                )
+        else:
+            # Get ascii-fied thumbnail
+            if self.video_file and not self.thumbnail_file:
+                self.thumbnail_file = generate_thumbnail(
+                    self.video_file,
+                    apply_ascii_filter=False,
+                )
+            # only apply ascii filter when CREATING video, not update/partial update
+            if self._state.adding and self.video_file:
+                self.video_file, files_to_cleanup = generate_ascii_video(
+                    self.video_file,
+                )
+                super().save(*args, **kwargs)
+                # WARNING: Temp files must be deleted AFTER super().save().
+                # Otherwise Django will be saving nonexistent files.
+                files_to_cleanup["temp_video_file"].close()
+                os.remove(files_to_cleanup["temp_video_file"].name)
+                files_to_cleanup["output_video_file"].close()
+                os.remove(files_to_cleanup["output_video_file"].name)
+                files_to_cleanup["frame_dir"].cleanup()

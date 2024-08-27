@@ -53,7 +53,7 @@ def generate_ascii_video(video_file):
     }
 
 
-def generate_thumbnail(video_file):
+def generate_thumbnail(video_file, apply_ascii_filter=False):
     temp_video_file = NamedTemporaryFile(suffix=".mp4")
     try:
         for chunk in video_file.chunks():
@@ -69,12 +69,16 @@ def generate_thumbnail(video_file):
             .run(capture_stdout=True, capture_stderr=True)
         )
 
-        # Ascii-fy the thumbnail
         temp_image = BytesIO(process[0])
-        ascii_image = Ascii(temp_image)
-        ascii_image.density_artify()
         image_file = BytesIO()
-        ascii_image.save(image_file, format="JPEG")
+        if apply_ascii_filter:
+            # Ascii-fy the thumbnail
+            ascii_image = Ascii(temp_image)
+            ascii_image.density_artify()
+            ascii_image.save(image_file, format="JPEG")
+        else:
+            image = Image.open(temp_image)
+            image.save(image_file, format="JPEG")
         image_file.seek(0)
         thumbnail = File(image_file, name=thumbnail_name)
         return thumbnail
