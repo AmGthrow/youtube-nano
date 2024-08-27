@@ -59,6 +59,10 @@ class Video(models.Model):
         super().delete(*args, **kwargs)
 
     def save(self, *args, **kwargs):
+        # If thumbnail_file is not already set, generate the thumbnail
+        if self.video_file and not self.thumbnail_file:
+            self.thumbnail_file = generate_thumbnail(self.video_file)
+
         # When creating new video, automatically cover it with an ASCII filter
         if self._state.adding and self.video_file:
 
@@ -73,8 +77,3 @@ class Video(models.Model):
             files_to_cleanup["output_video_file"].close()
             os.remove(files_to_cleanup["output_video_file"].name)
             files_to_cleanup["frame_dir"].cleanup()
-
-        # If thumbnail_file is not already set, generate the thumbnail
-        if self.video_file and not self.thumbnail_file:
-            self.thumbnail_file = generate_thumbnail(self.video_file)
-            super().save(update_fields=["thumbnail_file"])
