@@ -14,6 +14,9 @@ def generate_ascii_video(video_file):
     temp_video_file = tempfile.NamedTemporaryFile(suffix=".mp4", delete=False)
     output_video_file = tempfile.NamedTemporaryFile(suffix=".mp4", delete=False)
     frame_dir = tempfile.TemporaryDirectory()
+    audio_file = tempfile.NamedTemporaryFile(
+        suffix=".aac", delete=False
+    )  # Temp file for audio
 
     # Save the video file to a temporary file
     for chunk in video_file.chunks():
@@ -23,6 +26,11 @@ def generate_ascii_video(video_file):
     # Extract frames from the video using ffmpeg
     frame_pattern = os.path.join(frame_dir.name, "frame_%04d.png")
     ffmpeg.input(temp_video_file.name).output(frame_pattern, r=2).run()
+
+    # Extract audio from the original video
+    ffmpeg.input(temp_video_file.name).output(
+        audio_file.name, acodec="copy"
+    ).overwrite_output().run()
 
     # Process each frame to convert it to ASCII
     for frame_filename in os.listdir(frame_dir.name):
@@ -39,10 +47,25 @@ def generate_ascii_video(video_file):
         pix_fmt="yuv420p",
         movflags="+faststart",
     ).overwrite_output().run()
-    # Convert the output video to a Django File object
-    output_video_file.seek(0)
+
+    # Merge the original audio with the new video
+    video_input = ffmpeg.input(output_video_file.name)
+    audio_input = ffmpeg.input(audio_file.name)
+
+    final_output_video_file = tempfile.NamedTemporaryFile(suffix=".mp4", delete=False)
+    ffmpeg.output(
+        video_input,
+        audio_input,
+        final_output_video_file.name,
+        vcodec="copy",  # Copy video stream as is
+        acodec="aac",  # Encode audio stream to AAC
+        movflags="+faststart",
+    ).overwrite_output().run()
+
+    # Convert the final output video to a Django File object
+    final_output_video_file.seek(0)
     ascii_video = File(
-        output_video_file,
+        final_output_video_file,
         name=f"{os.path.splitext(video_file.name)[0]}_ascii.mp4",
     )
 
