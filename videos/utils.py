@@ -36,6 +36,8 @@ def generate_ascii_video(video_file):
     ffmpeg.input(frame_pattern, framerate=2).output(
         output_video_file.name,
         vcodec="libx264",
+        pix_fmt="yuv420p",
+        movflags="+faststart",
     ).overwrite_output().run()
     # Convert the output video to a Django File object
     output_video_file.seek(0)
