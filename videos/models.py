@@ -60,7 +60,7 @@ class Video(models.Model):
         super().delete(*args, **kwargs)
 
     def save(self, *args, **kwargs):
-        if self.apply_ascii_filter:
+        if not self.apply_ascii_filter:
             # Get regular thumbnail
             if self.video_file and not self.thumbnail_file:
                 self.thumbnail_file = generate_thumbnail(
