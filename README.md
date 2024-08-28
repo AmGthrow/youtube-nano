@@ -1,5 +1,5 @@
 # youtube-nano
-Tiny version of YouTube with video uploads, likes, comments, and search.
+Tiny version of YouTube with video uploads, likes, and permissions based on logged-in user.
 
 ## Key Features
 This video shows off how the app works and it's core features
