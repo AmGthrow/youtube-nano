@@ -47,3 +47,14 @@ python manage.py migrate
 ```
 python manage.py runserver --settings youtubenano.settings.development
 ```
+
+## Docker (OPTIONAL)
+Start the Docker daemon and build the Docker image.
+```
+docker build .
+```
+
+Once the image has been built, you can spin up the container.
+```
+docker compose -f docker-compose-dev.yml up
+```
