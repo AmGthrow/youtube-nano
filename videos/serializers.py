@@ -12,6 +12,7 @@ class VideoDetailSerializer(serializers.ModelSerializer):
             "id",
             "video_file",
             "title",
+            "apply_ascii_filter",
             "description",
             "uploader",
             "likes",

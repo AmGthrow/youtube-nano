@@ -2,6 +2,7 @@ export interface VideoDataDetailed {
     id: string;
     video_file: string;
     title: string;
+    apply_ascii_filter: boolean;
     description: string;
     uploader: string;
     likes: number;
@@ -11,6 +12,7 @@ export interface VideoDataDetailed {
 export interface VideoDataUpload {
     video_file: File | null;
     title: string;
+    apply_ascii_filter: boolean;
     description: string;
     uploader: string;
     likes: number;

@@ -1,21 +1,34 @@
 <form (ngSubmit)="onSubmit()" #uploadForm="ngForm">
-    <div class="form-label">
+    @if(loading){
+    <div class="loading-overlay">
+        <p>Loading...</p>
+    </div>
+    }
+
+    <div [class.disabled]="loading" class="form-group">
         <label for="videoFile">Video File</label>
-        <input type="file" id="videoFile" (change)="onFileSelected($event)" name="videoFile" required
-            accept="video/*" />
+        <input type="file" id="videoFile" (change)="onFileSelected($event)" name="videoFile" required accept="video/*"
+            [disabled]="loading" />
     </div>
-    <div class="form-label">
+    <div [class.disabled]="loading" class="form-group checkbox-group">
+        <input type="checkbox" id="asciiFilter" [(ngModel)]="videoData.apply_ascii_filter" name="applyAsciiFilter"
+            [disabled]="loading" />
+        <label for="asciiFilter">Apply ASCII filter?</label>
+    </div>
+    <div [class.disabled]="loading" class="form-group">
         <label for="title">Title</label>
-        <input type="text" id="title" [(ngModel)]="videoData.title" name="title" required />
+        <input type="text" id="title" [(ngModel)]="videoData.title" name="title" required [disabled]="loading" />
     </div>
-    <div class="form-label">
+    <div [class.disabled]="loading" class="form-group">
         <label for="description">Description</label>
-        <textarea id="description" [(ngModel)]="videoData.description" name="description" required></textarea>
+        <textarea id="description" [(ngModel)]="videoData.description" name="description" required
+            [disabled]="loading"></textarea>
     </div>
-    <div class="form-label">
+    <div [class.disabled]="loading" class="form-group">
         <label for="likes">Likes</label>
-        <input type="number" id="likes" [(ngModel)]="videoData.likes" name="likes" required min="0" />
+        <input type="number" id="likes" [(ngModel)]="videoData.likes" name="likes" required min="0"
+            [disabled]="loading" />
     </div>
 
-    <button type="submit">Upload Video</button>
+    <button type="submit" class="btn-submit" [disabled]="loading">Upload Video</button>
 </form>
