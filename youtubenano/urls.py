@@ -17,7 +17,6 @@ urlpatterns = [
     path("api/v1/auth/registration/", include("dj_rest_auth.registration.urls")),
     path("api/v1/api-auth/", include("rest_framework.urls")),
     path("api/v1/", include(router.urls)),
-    re_path(r"^(?P<path>.*)/$", frontend_views.index),
     path("", frontend_views.index),
 ]
 
@@ -61,3 +60,5 @@ if settings.DEBUG:
             name="schema-redoc",
         )
     )
+
+urlpatterns.append(re_path(r"^(?P<path>.*)/$", frontend_views.index))
