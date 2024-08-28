@@ -23,3 +23,41 @@ urlpatterns = [
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+    # Swagger docs configuration
+    from drf_yasg import openapi
+    from drf_yasg.views import get_schema_view
+    from rest_framework import permissions
+
+    schema_view = get_schema_view(
+        openapi.Info(
+            title="Youtube Nano API",
+            default_version="v1",
+            description="API Documentation for https://github.com/AmGthrow/youtube-nano",
+        ),
+        public=True,
+        permission_classes=[permissions.AllowAny],
+    )
+
+    # API Documentation
+    urlpatterns.append(
+        re_path(
+            r"^api/v1/docs/swagger(?P<format>\.json|\.yaml)$",
+            schema_view.without_ui(cache_timeout=0),
+            name="schema-json",
+        )
+    )
+    urlpatterns.append(
+        path(
+            "api/v1/docs/swagger/",
+            schema_view.with_ui("swagger", cache_timeout=0),
+            name="schema-swagger-ui",
+        ),
+    )
+    urlpatterns.append(
+        path(
+            "api/v1/docs/redoc/",
+            schema_view.with_ui("redoc", cache_timeout=0),
+            name="schema-redoc",
+        )
+    )
