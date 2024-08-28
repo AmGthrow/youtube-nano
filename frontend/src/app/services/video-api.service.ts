@@ -9,7 +9,7 @@ import { getHeaders } from './helpers';
 })
 export class VideoApiService {
 
-  private apiUrl = 'http://127.0.0.1:8000/api/v1/videos/';
+  private apiUrl = '/api/v1/videos/';
   private videosUpdated = new Subject<void>();
   constructor(private http: HttpClient) { }
 
