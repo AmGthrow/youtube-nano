@@ -60,6 +60,8 @@ class Video(models.Model):
         super().delete(*args, **kwargs)
 
     def save(self, *args, **kwargs):
+        result = None
+
         if not self.apply_ascii_filter:
             # Get regular thumbnail
             if self.video_file and not self.thumbnail_file:
@@ -67,7 +69,7 @@ class Video(models.Model):
                     self.video_file,
                     apply_ascii_filter=False,
                 )
-            result = super().save(*args, **kwargs)
+            return super().save(*args, **kwargs)
         else:
             # Get ascii-fied thumbnail
             if self.video_file and not self.thumbnail_file:
@@ -88,4 +90,5 @@ class Video(models.Model):
                 files_to_cleanup["output_video_file"].close()
                 os.remove(files_to_cleanup["output_video_file"].name)
                 files_to_cleanup["frame_dir"].cleanup()
-        return result
+                return result
+        return super().save(*args, **kwargs)
