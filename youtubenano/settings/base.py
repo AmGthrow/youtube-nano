@@ -90,11 +90,14 @@ WSGI_APPLICATION = "youtubenano.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-
-DATABASES = {  # TODO: Move to Postgres on settings.base
+DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": env.str("DJANGO_DB_NAME"),
+        "USER": env.str("DJANGO_DB_USER"),
+        "PASSWORD": env.str("DJANGO_DB_PASSWORD"),
+        "HOST": env.str("DJANGO_DB_HOST"),
+        "PORT": env.int("DJANGO_DB_PORT"),
     }
 }
 

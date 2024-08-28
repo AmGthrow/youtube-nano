@@ -1,6 +1,8 @@
 from youtubenano.settings.base import *  # NOQA
 from youtubenano.settings.base import env
 
+INSTALLED_APPS.append("drf_yasg")
+
 # https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
 SECRET_KEY = env(
     "DJANGO_SECRET_KEY",
