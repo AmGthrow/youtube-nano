@@ -3,11 +3,12 @@ import { VideoDataDetailed } from '../types/video-data';
 import { AuthService } from '../services/auth.service';
 import { VideoApiService } from '../services/video-api.service';
 import { FormsModule } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-videoplayer',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, DatePipe],
   templateUrl: './videoplayer.component.html',
   styleUrl: './videoplayer.component.scss'
 })

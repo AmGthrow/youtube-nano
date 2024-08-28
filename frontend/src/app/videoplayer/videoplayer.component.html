@@ -26,5 +26,6 @@
         </div>
         <div style="text-align: right;">
             <p>Uploader: {{ videoDataDetailed?.uploader || 'Unknown' }}</p>
+            <p>Uploaded on: {{ videoDataDetailed?.uploaded_at | date:'MMMM d, y' || 'Unknown' }}</p>
         </div>
     </div>
