@@ -18,7 +18,7 @@
             <p>{{ videoDataDetailed?.description || 'No description available.' }}</p>
             <p>Likes: {{ videoDataDetailed?.likes || 'N/A' }}</p>
             }
-            @if(!editing && videoDataDetailed?.uploader === authService.user?.username){
+            @if(!editing && videoDataDetailed && videoDataDetailed.uploader === authService.user?.username){
             <button class="form-button" (click)="startEditing()">Edit Video</button>
             <button class="form-button-delete" (click)="deleteVideo()">Delete
                 Video</button>
