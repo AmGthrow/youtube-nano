@@ -7,6 +7,7 @@ This video shows off how the app works and it's core features
 - Sign-in and Login
 - Read/write permissions based on currently signed in user
 - Pre-processing videos to apply an ASCII filter
+
 https://drive.google.com/file/d/1fkdqvWwnx-4pKxEsvrg08oKVYxvjVqSb/view?usp=sharing
 ## Devlog
 This video talks about my development process while building the app, the decisions I had to make and the problems I encountered, etc.
